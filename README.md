@@ -1,7 +1,6 @@
-![Photo of Mark Michaelis](https://intellitect.com/wp-content/uploads/2010/03/Mark-SWR.jpg)
 # Mark Michaelis
 
-## Principal, CEO, Chief Technical Architect at [IntelliTect](https://IntelliTect.com)
+## CEO & Chief Technical Architect at [IntelliTect](https://IntelliTect.com)
 
 A premier authority in Microsoft development technologies with recognized coding expertise and proven training methods, IntelliTect’s CEO delivers customized strategic technology consulting to CIOs, technology executives, and industry leaders. Recognized by Microsoft as a Regional Director since 2007 and distinguished Microsoft MVP for C# for twenty-five years, this leader is also an adjunct professor at Eastern Washington University, founder of the Spokane .NET Users Group, organizer of the Spokane DevOps Meetup, and co-organizer of the annual TEDx Coeur d’Alene events.
 
