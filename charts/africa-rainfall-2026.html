@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Africa Rainfall: February, April & May</title>
+<style>
+  :root{color-scheme:light;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  *{box-sizing:border-box}
+  body{background:#f3f6fa;color:#17253c;margin:0}
+  main{max-width:1100px;margin:36px auto;padding:24px 30px 12px;background:white;border-radius:16px;box-shadow:0 8px 32px #17344d14}
+  h1{font-size:clamp(23px,3.1vw,33px);line-height:1.2;margin:2px 0 8px}
+  p{color:#607188;margin:0 0 16px}
+  #chart{width:100%;height:575px}
+  .footnote{font-size:13px;margin:2px 0 24px;line-height:1.5}
+  details{margin-bottom:15px;color:#516074;font-size:14px}
+  summary{cursor:pointer}
+  table{width:100%;border-collapse:collapse;margin:8px 0 12px}
+  td,th{padding:9px;border-bottom:1px solid #dfe6ee;text-align:right}
+  td:first-child,th:first-child{text-align:left}
+  @media(max-width:650px){body{background:white}main{margin:0;padding:17px 8px;box-shadow:none}h1,p{margin-left:9px;margin-right:9px}#chart{height:575px}}
+</style>
+<script src="https://cdn.plot.ly/plotly-3.3.1.min.js"></script>
+</head>
+<body>
+<main>
+<h1>Rainfall comparison: February, April &amp; May</h1>
+<p>Historical average monthly rainfall in Mozambique, Uganda and South Africa</p>
+<div id="chart" role="img" aria-label="Line chart comparing the typical rainfall in Nampula, Kampala, Kruger and Cape Town in February, April and May"></div>
+<p class="footnote">Values are approximate historical monthly averages (mm), rounded. Curved lines are for appearance; only February, April and May are data points, and the curves do not represent measurements between these months. Click the legend to hide or show locations. Hover for values. Use the camera icon to download a PNG. This is not a forecast.</p>
+<details><summary>View underlying rainfall data</summary>
+<table><thead><tr><th>Location</th><th>Feb</th><th>Apr</th><th>May</th></tr></thead>
+<tbody>
+<tr><td>Nampula, Mozambique</td><td>228</td><td>93</td><td>21</td></tr>
+<tr><td>Kampala, Uganda</td><td>72</td><td>183</td><td>152</td></tr>
+<tr><td>Kruger, South Africa</td><td>99</td><td>32</td><td>15</td></tr>
+<tr><td>Cape Town, South Africa</td><td>18</td><td>41</td><td>71</td></tr>
+</tbody></table></details>
+</main>
+<script>
+const months=['February','April','May'];
+const locations=[
+  {name:'Nampula, Mozambique', y:[228,93,21], color:'#DB813D'},
+  {name:'Kampala, Uganda',y:[72,183,152],color:'#3679A9'},
+  {name:'Kruger, South Africa',y:[99,32,15],color:'#308A6D'},
+  {name:'Cape Town, South Africa',y:[18,41,71],color:'#9466B6'}
+];
+if(window.Plotly){
+  const traces=locations.map(({name,y,color})=>({
+    x:[0,1,2],y,name,type:'scatter',mode:'lines+markers',
+    line:{shape:'spline',smoothing:1.05,width:3.5,color},
+    marker:{size:11,color,line:{width:1.5,color:'#fff'}},
+    customdata:months,
+    hovertemplate:'<b>%{fullData.name}</b><br>%{customdata}: %{y} mm<extra></extra>'
+  }));
+  Plotly.newPlot('chart',traces,{
+    paper_bgcolor:'#fff',plot_bgcolor:'#fff',
+    margin:{l:65,r:25,t:22,b:125},autosize:true,
+    font:{family:'Arial, sans-serif',color:'#344054',size:13},
+    xaxis:{tickmode:'array',tickvals:[0,1,2],ticktext:months,range:[-.13,2.13],showgrid:false,zeroline:false,tickfont:{size:14}},
+    yaxis:{title:'Average rainfall (mm)',range:[0,260],dtick:50,gridcolor:'#e8edf2',zeroline:false},
+    legend:{orientation:'h',y:-.25,x:0,font:{size:13}},
+    hovermode:'closest'
+  },{responsive:true,displaylogo:false,toImageButtonOptions:{format:'png',filename:'africa_rainfall_curved',width:1400,height:850,scale:2}});
+}else{
+  document.getElementById('chart').innerHTML='<p>Chart unavailable while offline. The numbers are in the table below.</p>';
+}
+</script>
+</body>
+</html>
